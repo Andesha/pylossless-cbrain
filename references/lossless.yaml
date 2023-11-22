@@ -1,0 +1,82 @@
+aref_trim: 30
+bridged_channels:
+    bridge_trim: 40
+    bridge_z: 6
+epoching:
+    epochs_args:
+        baseline: null
+        tmax: 1
+        tmin: 0
+    overlap: 0
+filtering:
+    filter_args:
+        h_freq: 100
+        l_freq: 1
+    notch_filter_args:
+        freqs: []
+find_breaks: null
+ica:
+    ica_args:
+        run1:
+            method: fastica
+        run2:
+            fit_params:
+                extended: true
+            method: infomax
+    noisy_ic_epochs:
+        flag_crit: 0.2
+        outlier_method: quantile
+        outliers_kwargs:
+            k: 6
+            lower: 0.3
+            upper: 0.7
+in_path: []
+montage_info:
+- 0.0
+- -16.0
+- 0.0
+- -0.02
+- 0.0
+- -1.58
+- 10.7
+- 11.5
+- 11.5
+nearest_neighbors:
+    n_nbr_ch: 3
+    n_nbr_epoch: 3
+noisy_channels:
+    flag_crit: 0.2
+    outlier_method: quantile
+    outliers_kwargs:
+        k: 16
+        lower: 0.3
+        upper: 0.7
+noisy_epochs:
+    flag_crit: 0.2
+    outlier_method: quantile
+    outliers_kwargs:
+        k: 16
+        lower: 0.3
+        upper: 0.7
+order: 1
+out_path: derivatives/EEG-IP-L
+project:
+    analysis_montage: biosemi64
+    bids_montage: biosemi64
+    set_montage_kwargs: {}
+save_f_res: 1
+sd_t_pad: 1
+uncorrelated_channels:
+    flag_crit: 0.2
+    outlier_method: quantile
+    outliers_kwargs:
+        k: 16
+        lower: 0.3
+        upper: 0.7
+uncorrelated_epochs:
+    flag_crit: 0.2
+    outlier_method: quantile
+    outliers_kwargs:
+        k: 16
+        lower: 0.3
+        upper: 0.7
