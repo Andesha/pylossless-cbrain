@@ -61,8 +61,8 @@ noisy_epochs:
 order: 1
 out_path: derivatives/EEG-IP-L
 project:
-    analysis_montage: biosemi64
-    bids_montage: biosemi64
+    analysis_montage: biosemi128
+    bids_montage: biosemi128
     set_montage_kwargs: {}
 save_f_res: 1
 sd_t_pad: 1
