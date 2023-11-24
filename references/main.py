@@ -15,5 +15,5 @@ pipeline = ll.LosslessPipeline('lossless.yaml')
 pipeline.run_with_raw(raw)
 
 # Save
-bids_path = mne_bids.BIDSPath(subject=subject_id, task='test', suffix='eeg', extension='.edf', datatype='eeg', root='.')
+bids_path = mne_bids.BIDSPath(subject=subject_id, task='test', suffix='eeg', extension='.edf', datatype='eeg', root=sys.argv[2])
 pipeline.save(pipeline.get_derivative_path(bids_path), overwrite=True)

@@ -4,7 +4,7 @@
     "description": "Run the pyLossless pipeline on a BIDS subject file.",
     "tool-version": "0.1",
     "schema-version": "0.5",
-    "command-line": "bash /Brainstorm/Brainstorm-Tool/compiled_tool/run_bst_tool.sh /usr/local/MATLAB/MATLAB_Runtime/v910/ [BIDS_DATASET] [PIPELINE]",
+    "command-line": "python3 /pylossless/main.py [BDF_INPUT] [OUTPUT_PATH]",
     "container-image": {
         "image": "tk11br/pylossless-cbrain",
         "index": "docker://",
@@ -12,21 +12,21 @@
     },
     "inputs": [
         {
-            "id": "bids_dataset",
-            "name": "BIDS dataset",
+            "id": "bdf_input",
+            "name": "Single BDF file",
             "optional": false,
             "type": "File",
-            "description": "EEG BIDS dataset",
+            "description": "Input BDF file to the pylossless pipeline.",
             "value-key": "[BIDS_DATASET]"
         }
     ],
     "output-files": [
         {
-            "id": "output_directory",
-            "name": "Output Directory",
+            "id": "output_path",
+            "name": "Output Path",
             "optional": false,
-            "description": "Output directory",
-            "path-template": "[BIDS_DATASET]_output"
+            "description": "Output path",
+            "value-key": "[OUTPUT_PATH]"
         }
     ],
     "suggested-resources": {
