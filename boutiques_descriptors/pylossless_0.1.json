@@ -17,16 +17,24 @@
             "optional": false,
             "type": "File",
             "description": "Input BDF file to the pylossless pipeline.",
-            "value-key": "[BIDS_DATASET]"
-        }
-    ],
-    "output-files": [
+            "value-key": "[BDF_INPUT]"
+        },
         {
             "id": "output_path",
             "name": "Output Path",
             "optional": false,
-            "description": "Output path",
+            "type": "File",
+            "description": "Where to begin writing the output of the pipeline relative to its current directory.",
             "value-key": "[OUTPUT_PATH]"
+        }
+    ],
+    "output-files": [
+        {
+            "id": "output_directory",
+            "name": "Output Directory",
+            "optional": false,
+            "description": "Output directory",
+            "path-template": "[BDF_INPUT]_output"
         }
     ],
     "suggested-resources": {
