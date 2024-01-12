@@ -13,7 +13,7 @@ USER pylossless
 WORKDIR /pylossless
 
 # Install pylossless package from remote
-RUN pip install pylossless --user
+RUN pip install git+https://github.com/Andesha/pylossless.git --user
 
 # Update package permissions, and add to path
 RUN find /pylossless -type d -print0 | xargs -0 chmod go+rx
