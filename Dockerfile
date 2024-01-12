@@ -5,7 +5,7 @@ FROM ubuntu:latest
 # Root/whole container upgrades
 RUN apt update -y
 RUN apt upgrade -y
-RUN apt install -y build-essential nano python3.10 python3-pip git
+RUN apt install -y build-essential python3.10 python3-pip git
 
 # Create local user to work in
 RUN useradd -U -m -s /bin/bash -d /pylossless pylossless
