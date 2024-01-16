@@ -19,6 +19,9 @@ RUN pip install git+https://github.com/Andesha/pylossless.git --user
 RUN find /pylossless -type d -print0 | xargs -0 chmod go+rx
 ENV PATH=/pylossless/.local/bin:$PATH
 
+# Make sure any user can find the python package properly
+ENV PYTHONPATH=/pylossless/.local/lib/python3.10/site-packages
+
 # Copy external files
 COPY bin/pylossless     /pylossless/.local/bin
 COPY etc/lossless.yaml  /pylossless/lossless.yaml
