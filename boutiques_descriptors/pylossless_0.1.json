@@ -34,7 +34,7 @@
             "name": "Output Directory",
             "optional": true,
             "description": "Output directory",
-            "path-template": "derivatives/pylossless"
+            "path-template": "[OUTPUT_PATH]/derivatives/pylossless"
         }
 
     ],
@@ -44,6 +44,11 @@
     },
     "custom": {
         "cbrain:author": "Tyler Collins <collins.tyler.k@gmail.com>",
-        "cbrain:readonly-input-files": true
+        "cbrain:readonly-input-files": true,
+        "cbrain:integrator_modules": {
+            "BoutiquesInputValueFixer": {
+                "output_path": "cbrain_py_out"
+            }
+        }
     }
 }
