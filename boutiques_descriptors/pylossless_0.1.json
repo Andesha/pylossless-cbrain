@@ -23,7 +23,7 @@
             "id": "output_path",
             "name": "Output Path",
             "optional": false,
-            "type": "File",
+            "type": "String",
             "description": "Output path to begin writing tool results.",
             "value-key": "[OUTPUT_PATH]"
         }
