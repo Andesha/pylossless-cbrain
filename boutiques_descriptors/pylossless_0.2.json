@@ -1,0 +1,62 @@
+{
+    "name": "pyLossless",
+    "author": "Scott Huberty and Tyler Collins <https://github.com/lina-usc/pylossless>",
+    "description": "Run the pyLossless pipeline on a BIDS subject file.",
+    "tool-version": "0.2",
+    "schema-version": "0.5",
+    "command-line": "pylossless [BDF_INPUT] [SUBJECT_ID] [OUTPUT_PATH]",
+    "container-image": {
+        "image": "tk11br/pylossless-cbrain:0.2",
+        "index": "docker://",
+        "type": "singularity"
+    },
+    "inputs": [
+        {
+            "id": "bdf_input",
+            "name": "Single BDF file",
+            "optional": false,
+            "type": "File",
+            "description": "Input BDF file to the pylossless pipeline.",
+            "value-key": "[BDF_INPUT]"
+        },
+        {
+            "id": "subject_id",
+            "name": "Subject ID",
+            "optional": false,
+            "type": "String",
+            "description": "Subject ID to assign to source file.",
+            "value-key": "[SUBJECT_ID]"
+        },
+        {
+            "id": "output_path",
+            "name": "Output Path",
+            "optional": false,
+            "type": "String",
+            "description": "Output path to begin writing tool results.",
+            "value-key": "[OUTPUT_PATH]"
+        }
+    ],
+    "output-files": [
+        {
+            "id": "output_directory",
+            "name": "Output Directory",
+            "optional": true,
+            "description": "Output directory",
+            "path-template": "[OUTPUT_PATH]/derivatives/pylossless"
+        }
+
+    ],
+    "suggested-resources": {
+        "walltime-estimate": 7200,
+        "ram": 16
+    },
+    "custom": {
+        "cbrain:author": "Tyler Collins <collins.tyler.k@gmail.com>",
+        "cbrain:readonly-input-files": true,
+        "cbrain:integrator_modules": {
+            "BoutiquesInputValueFixer": {
+                "output_path": "cbrain_py_out"
+            }
+        }
+    }
+}
