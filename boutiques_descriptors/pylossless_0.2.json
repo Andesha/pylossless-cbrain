@@ -44,7 +44,6 @@
             "description": "Output directory",
             "path-template": "[OUTPUT_PATH]/derivatives/pylossless"
         }
-
     ],
     "suggested-resources": {
         "walltime-estimate": 7200,
@@ -58,5 +57,13 @@
                 "output_path": "cbrain_py_out"
             }
         }
-    }
+    },
+    "tags": {
+        "domain": [
+            "neuroinformatics",
+            "eeg",
+            "eegnet"
+        ]
+    },
+    "doi": "10.5281/zenodo.14008350"
 }
