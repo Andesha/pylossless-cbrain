@@ -9,11 +9,14 @@ subject_file = sys.argv[1]
 subject_id = sys.argv[2]
 root_out = sys.argv[3]
 
-raw = mne.io.read_raw_bdf(subject_file, preload=True)
+raw = mne.io.read_raw(subject_file, preload=True)
 
-pipeline = ll.LosslessPipeline('/pylossless/lossless.yaml')
+config = ll.config.Config()
+config.load_default()
+
+pipeline = ll.LosslessPipeline(config)
 pipeline.run_with_raw(raw)
 
 # Save
-bids_path = mne_bids.BIDSPath(subject=subject_id, task='test', suffix='eeg', extension='.edf', datatype='eeg', root=root_out)
+bids_path = mne_bids.BIDSPath(subject=subject_id, task='cbrain', suffix='eeg', extension='.edf', datatype='eeg', root=root_out)
 pipeline.save(pipeline.get_derivative_path(bids_path), overwrite=True)
