@@ -1,34 +1,28 @@
-# Install the base requirements for the app.
-# This stage is to support development.
-FROM ubuntu:latest
+FROM python:3.12-slim
 
-# Root/whole container upgrades
-RUN apt update -y
-RUN apt upgrade -y
-RUN apt install -y build-essential python3.12 python3-pip git
+# Base deps
+RUN apt-get update && apt-get install -y --no-install-recommends build-essential git \
+ && rm -rf /var/lib/apt/lists/*
 
-# Create local user to work in
+# App user
 RUN useradd -U -m -s /bin/bash -d /pylossless pylossless
 USER pylossless
 WORKDIR /pylossless
 
-# Install pylossless package from remote
-RUN pip install git+https://github.com/Andesha/pylossless.git --user
+# Install package (user site)
+RUN pip install --no-cache-dir --user git+https://github.com/Andesha/pylossless.git
 
-# Update package permissions, and add to path
-RUN find /pylossless -type d -print0 | xargs -0 chmod go+rx
+# Ensure PATH finds user-site scripts
 ENV PATH=/pylossless/.local/bin:$PATH
-
-# Make sure any user can find the python package properly
 ENV PYTHONPATH=/pylossless/.local/lib/python3.12/site-packages
 
-# Copy external files
-COPY bin/pylossless     /pylossless/.local/bin
-# COPY etc/lossless.yaml  /pylossless/lossless.yaml
-
-# Make sure above copied files have correct ownership/group
+# Copy your entrypoint script and make it executable with LF endings
 USER root
-RUN chown pylossless:pylossless /pylossless/.local/bin/pylossless
+COPY bin/pylossless /pylossless/.local/bin/pylossless
+RUN dos2unix /pylossless/.local/bin/pylossless 2>/dev/null || true \
+ && chmod 0755 /pylossless/.local/bin/pylossless \
+ && chown pylossless:pylossless /pylossless/.local/bin/pylossless
 USER pylossless
 
-ENTRYPOINT [ "pylossless" ]
+# Prefer absolute path to avoid PATH resolution issues
+ENTRYPOINT ["/pylossless/.local/bin/pylossless"]
