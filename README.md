@@ -29,5 +29,5 @@ Currently the launching point of the container only implements processing a sing
 ### Further test commands
 
 ```bash
-tyler@theralion:~/Documents/eeg-dev/pylossless-cbrain$ docker run -v ./input_test:/input -v ./output_test:/output -it --entrypoint bash base-pylossless /input/IC_trn_P01_F_1.bdf 123 123
+docker run -v ./input_test:/input -v ./output_test:/output -it --entrypoint bash base-pylossless
 ```
