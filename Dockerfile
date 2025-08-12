@@ -5,7 +5,7 @@ FROM ubuntu:latest
 # Root/whole container upgrades
 RUN apt update -y
 RUN apt upgrade -y
-RUN apt install -y build-essential python3.10 python3-pip git
+RUN apt install -y build-essential python3.12 python3-pip git
 
 # Create local user to work in
 RUN useradd -U -m -s /bin/bash -d /pylossless pylossless
@@ -20,14 +20,15 @@ RUN find /pylossless -type d -print0 | xargs -0 chmod go+rx
 ENV PATH=/pylossless/.local/bin:$PATH
 
 # Make sure any user can find the python package properly
-ENV PYTHONPATH=/pylossless/.local/lib/python3.10/site-packages
+ENV PYTHONPATH=/pylossless/.local/lib/python3.12/site-packages
 
 # Copy external files
 COPY bin/pylossless     /pylossless/.local/bin
-COPY etc/lossless.yaml  /pylossless/lossless.yaml
+# COPY etc/lossless.yaml  /pylossless/lossless.yaml
+
 # Make sure above copied files have correct ownership/group
 USER root
-RUN chown pylossless:pylossless /pylossless/.local/bin/pylossless /pylossless/lossless.yaml
+RUN chown pylossless:pylossless /pylossless/.local/bin/pylossless
 USER pylossless
 
 ENTRYPOINT [ "pylossless" ]
