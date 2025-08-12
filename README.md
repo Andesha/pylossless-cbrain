@@ -25,3 +25,9 @@ Output will be written to the `output_test` directory in the git repository assu
 ## Disclaimers
 
 Currently the launching point of the container only implements processing a single BDF file and writing the output as BIDS derivative. More input file options will be made available upon completed testing.
+
+### Further test commands
+
+```bash
+tyler@theralion:~/Documents/eeg-dev/pylossless-cbrain$ docker run -v ./input_test:/input -v ./output_test:/output -it --entrypoint bash base-pylossless /input/IC_trn_P01_F_1.bdf 123 123
+```
