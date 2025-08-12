@@ -4,12 +4,21 @@ import pylossless as ll
 import mne
 import mne_bids
 import sys
+from mne_bids import BIDSPath, read_raw_bids
 
 subject_file = sys.argv[1]
 subject_id = sys.argv[2]
 root_out = sys.argv[3]
 
-raw = mne.io.read_raw(subject_file, preload=True)
+# Define the specific subject you want
+bids_path = BIDSPath(
+    subject=subject_id,         # Subject ID without 'sub-' prefix
+    root=subject_file,
+    datatype="eeg"        # or "meg", "ieeg" depending on your dataset
+)
+
+# Read the raw data
+raw = read_raw_bids(bids_path)
 
 config = ll.config.Config()
 config.load_default()
