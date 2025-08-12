@@ -13,17 +13,18 @@ root_out = sys.argv[3]
 # Define the specific subject you want
 bids_path = BIDSPath(
     subject=subject_id,         # Subject ID without 'sub-' prefix
-    root=subject_file,
-    datatype="eeg"        # or "meg", "ieeg" depending on your dataset
+    root='/input/',
+    datatype="eeg",        # or "meg", "ieeg" depending on your dataset
+    suffix='eeg'  # or whatever the actual suffix is
 )
 
 # Read the raw data
-raw = read_raw_bids(bids_path)
+raw = read_raw_bids(bids_path.match()[0])
 
 config = ll.config.Config()
 config.load_default()
 
-pipeline = ll.LosslessPipeline(config)
+pipeline = ll.LosslessPipeline(config=config)
 pipeline.run_with_raw(raw)
 
 # Save
