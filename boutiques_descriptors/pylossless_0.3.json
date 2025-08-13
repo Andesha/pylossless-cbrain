@@ -6,7 +6,7 @@
     "schema-version": "0.5",
     "command-line": "pylossless [BIDS_INPUT] [SUBJECT_ID] [OUTPUT_PATH]",
     "container-image": {
-        "image": "tk11br/pylossless-cbrain:0.2",
+        "image": "tk11br/pylossless-cbrain:0.3",
         "index": "docker://",
         "type": "singularity"
     },
