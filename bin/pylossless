@@ -6,9 +6,7 @@ import mne_bids
 import sys
 from mne_bids import BIDSPath, read_raw_bids
 
-subject_file = sys.argv[1]
 subject_id = sys.argv[2]
-root_out = sys.argv[3]
 
 # Define the specific subject you want
 bids_path = BIDSPath(
@@ -20,6 +18,7 @@ bids_path = BIDSPath(
 
 # Read the raw data
 raw = read_raw_bids(bids_path.match()[0])
+raw.load_data()
 
 config = ll.config.Config()
 config.load_default()
@@ -28,5 +27,5 @@ pipeline = ll.LosslessPipeline(config=config)
 pipeline.run_with_raw(raw)
 
 # Save
-bids_path = mne_bids.BIDSPath(subject=subject_id, task='cbrain', suffix='eeg', extension='.edf', datatype='eeg', root=root_out)
+bids_path = mne_bids.BIDSPath(subject=subject_id, task='cbrain', suffix='eeg', extension='.edf', datatype='eeg', root='/output/')
 pipeline.save(pipeline.get_derivative_path(bids_path), overwrite=True)
